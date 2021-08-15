@@ -36,9 +36,12 @@ static char __n[PAGE_SIZE] __aligned(PAGE_SIZE);
 #define SCM_BUFFER_PHYS(__buf)	virt_to_phys(__buf)
 
 #ifdef CONFIG_MSM_SCM
+extern int scm_call_with_command(u32 svc_id, u32 cmd_id, u32 len, u32 buf_offset, 
+                          u32 resp_hdr_offset);
 extern int scm_call(u32 svc_id, u32 cmd_id, const void *cmd_buf, size_t cmd_len,
 		void *resp_buf, size_t resp_len);
-
+extern int scm_call_no_remap_error(u32 svc_id, u32 cmd_id, const void *cmd_buf, size_t cmd_len,
+		void *resp_buf, size_t resp_len);
 extern int scm_call_noalloc(u32 svc_id, u32 cmd_id, const void *cmd_buf,
 		size_t cmd_len, void *resp_buf, size_t resp_len,
 		void *scm_buf, size_t scm_buf_size);
